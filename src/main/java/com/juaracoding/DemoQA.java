@@ -15,12 +15,24 @@ public class DemoQA {
         driver.get("https://demoqa.com/text-box");
         System.out.println("Open Browser");
 
+        String titlePage = driver.findElement(By.className("main-header")).getText();
+        System.out.print(titlePage+" ");
+        String headTitle = driver.getTitle();
+        System.out.println(headTitle);
         driver.findElement(By.id("userName")).sendKeys("ferry0601");
         driver.findElement(By.id("userEmail")).sendKeys("ferriendonesia@gmail.com");
         driver.findElement(By.id("currentAddress")).sendKeys("Medan");
         driver.findElement(By.id("permanentAddress")).sendKeys("Serdang Bedagai");
         js.executeScript("window.scroll(0,500)");
         driver.findElement(By.id("submit")).click();
+
+        //assert
+        if (titlePage.equalsIgnoreCase("Text Box")){
+            System.out.println("testing pass");
+        }
+        else {
+            System.out.println("testing failed");
+        }
 
         delay();
         driver.quit();
